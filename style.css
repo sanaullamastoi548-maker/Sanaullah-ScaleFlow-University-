@@ -1,1 +1,869 @@
+/*==========================================
 
+Sanaullah ScaleFlow University
+
+Module : Main Gateway
+
+Version : 1.0
+
+==========================================*/
+
+
+/* ==========================================
+   CSS RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    font-family:"Segoe UI",Arial,sans-serif;
+
+    background:#ffffff;
+
+    color:var(--black);
+
+    position:relative;
+
+}
+
+
+/* ==========================================
+   ROOT VARIABLES
+========================================== */
+
+:root{
+
+    --primary:#FFC107;
+    --primary-hover:#FFB300;
+
+    --white:#ffffff;
+    --black:#111827;
+
+    --text:#374151;
+    --border:#FFE082;
+
+    --sidebar-width:280px;
+    --right-width:320px;
+
+    --radius:18px;
+
+    --shadow:0 8px 25px rgba(0,0,0,.08);
+
+    --transition:.35s ease;
+
+}
+
+
+/* ==========================================
+   GLOBAL STYLES
+========================================== */
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+button{
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    border:none;
+
+    background:none;
+
+}
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+}
+
+/* ==========================================
+   PARTICLES BACKGROUND
+========================================== */
+
+#particles-js{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-1;
+
+    background:#ffffff;
+
+}
+
+
+/* ==========================================
+   APP CONTAINER
+========================================== */
+
+.app-container{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:var(--sidebar-width) 1fr var(--right-width);
+
+}
+
+
+/* ==========================================
+   COMMON CARD STYLE
+========================================== */
+
+.gateway-card,
+.progress-card,
+.goal-card,
+.notification-card,
+.stats-card{
+
+    background:#ffffff;
+
+    border:2px solid var(--border);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ==========================================
+   LEFT SIDEBAR
+========================================== */
+
+.sidebar{
+
+    background:#ffffff;
+
+    border-right:2px solid var(--border);
+
+    padding:30px 20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+    position:sticky;
+
+    top:0;
+
+    height:100vh;
+
+}
+
+
+/* ==========================================
+   WEBSITE LOGO
+========================================== */
+
+.logo{
+
+    text-align:center;
+
+}
+
+.logo h1{
+
+    font-size:30px;
+
+    color:var(--black);
+
+    font-weight:800;
+
+}
+
+.logo span{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:var(--primary);
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+
+/* ==========================================
+   USER CARD
+========================================== */
+
+.user-card{
+
+    background:#ffffff;
+
+    border:2px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+}
+
+.avatar{
+
+    width:80px;
+
+    height:80px;
+
+    margin:0 auto 15px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:36px;
+
+}
+
+.user-card h3{
+
+    margin-bottom:6px;
+
+}
+
+.user-card p{
+
+    color:var(--text);
+
+    margin-bottom:15px;
+
+}
+
+.brain-xp{
+
+    background:#FFF8E1;
+
+    border-radius:12px;
+
+    padding:10px;
+
+}
+
+
+/* ==========================================
+   SIDEBAR MENU
+========================================== */
+
+.sidebar-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.sidebar-menu a{
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.sidebar-menu a:hover{
+
+    background:var(--primary);
+
+    color:#000;
+
+    transform:translateX(6px);
+
+}
+
+
+/* ==========================================
+   QUICK ACTIONS
+========================================== */
+
+.quick-actions{
+
+    margin-top:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.quick-actions button{
+
+    background:var(--primary);
+
+    padding:12px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    transition:var(--transition);
+
+}
+
+.quick-actions button:hover{
+
+    background:var(--primary-hover);
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
+.main-content{
+
+    padding:40px;
+
+}
+
+
+/* ==========================================
+   HERO SECTION
+========================================== */
+
+.hero{
+
+    background:#ffffff;
+
+    border:2px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:45px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:30px;
+
+}
+
+.hero h1{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+    color:var(--black);
+
+}
+
+.hero h1 span{
+
+    color:var(--primary);
+
+}
+
+.hero p{
+
+    font-size:18px;
+
+    color:var(--text);
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   HERO BUTTONS
+========================================== */
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.primary-btn{
+
+    background:var(--primary);
+
+    color:#000;
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    transition:var(--transition);
+
+}
+
+.primary-btn:hover{
+
+    background:var(--primary-hover);
+
+    transform:translateY(-3px);
+
+}
+
+.secondary-btn{
+
+    background:#ffffff;
+
+    color:var(--black);
+
+    border:2px solid var(--primary);
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    transition:var(--transition);
+
+}
+
+.secondary-btn:hover{
+
+    background:var(--primary);
+
+}
+
+
+/* ==========================================
+   SMART SEARCH
+========================================== */
+
+.smart-search{
+
+    margin-bottom:35px;
+
+}
+
+.smart-search input{
+
+    width:100%;
+
+    padding:18px 20px;
+
+    border:2px solid var(--border);
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+.smart-search input:focus{
+
+    border-color:var(--primary);
+
+}
+
+
+/* ==========================================
+   GATEWAY GRID
+========================================== */
+
+.gateway-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+
+}
+
+
+/* ==========================================
+   GATEWAY CARD
+========================================== */
+
+.gateway-card{
+
+    padding:25px;
+
+    transition:var(--transition);
+
+    cursor:pointer;
+
+}
+
+.gateway-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--primary);
+
+}
+
+.gateway-card h3{
+
+    font-size:22px;
+
+    margin-bottom:15px;
+
+}
+
+.gateway-card p{
+
+    color:var(--text);
+
+    line-height:1.7;
+
+}
+
+/* ==========================================
+   RIGHT PANEL
+========================================== */
+
+.right-panel{
+
+    padding:30px;
+
+    background:#ffffff;
+
+    border-left:2px solid var(--border);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.progress-card,
+.goal-card,
+.notification-card,
+.stats-card{
+
+    padding:20px;
+
+}
+
+.progress-card h3,
+.goal-card h3,
+.notification-card h3,
+.stats-card h3{
+
+    margin-bottom:15px;
+
+}
+
+.progress-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+    color:var(--text);
+
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer{
+
+    grid-column:1 / -1;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:25px 40px;
+
+    background:#ffffff;
+
+    border-top:2px solid var(--border);
+
+    margin-top:30px;
+
+}
+
+.footer-center{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.footer-center a:hover{
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width:1200px){
+
+    .app-container{
+
+        grid-template-columns:260px 1fr;
+
+    }
+
+    .right-panel{
+
+        display:none;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .app-container{
+
+        display:flex;
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        position:relative;
+
+        height:auto;
+
+        border-right:none;
+
+        border-bottom:2px solid var(--border);
+
+    }
+
+    .hero{
+
+        padding:30px;
+
+    }
+
+    .hero h1{
+
+        font-size:30px;
+
+    }
+
+    .footer{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
+
+
+/* ==========================================
+   SMOOTH ANIMATIONS
+========================================== */
+
+.gateway-card,
+.user-card,
+.progress-card,
+.goal-card,
+.notification-card,
+.stats-card,
+button{
+
+    transition:all .35s ease;
+
+}
+
+.gateway-card:hover,
+.user-card:hover,
+.progress-card:hover,
+.goal-card:hover,
+.notification-card:hover,
+.stats-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+/* ==========================================
+   LEARNING HOME HERO
+========================================== */
+
+.learning-home-hero{
+
+    margin-bottom:35px;
+
+}
+
+.welcome-card{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:30px;
+
+    background:#ffffff;
+
+    border:2px solid var(--border);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.welcome-tag{
+
+    display:inline-block;
+
+    background:#FFF8E1;
+
+    color:#000;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+}
+
+.welcome-left h1{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+.welcome-text{
+
+    color:var(--text);
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+.welcome-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.hero-stat{
+
+    background:#FFFDF5;
+
+    border:2px solid var(--border);
+
+    border-radius:16px;
+
+    padding:18px;
+
+}
+
+.hero-stat span{
+
+    display:block;
+
+    color:var(--text);
+
+    margin-bottom:8px;
+
+}
+
+.hero-stat strong{
+
+    font-size:24px;
+
+    color:var(--black);
+
+}
+
+@media(max-width:900px){
+
+    .welcome-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
