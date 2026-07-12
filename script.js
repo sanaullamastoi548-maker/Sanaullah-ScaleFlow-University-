@@ -362,14 +362,9 @@
     // 19. MAIN INITIALIZER (Issue 3 حل - Combined)
     // ==========================================
     function initializeApp() {
-        if (state.isInitialized) {
-            log("⚠️ App already initialized");
-            return;
-        }
-        
-        log("🚀 Initializing Sanaullah ScaleFlow University...");
-        
-        // Init all modules
+    if (state.isInitialized) return;
+
+    try {
         initParticles();
         initSearch();
         initGatewayCards();
@@ -379,14 +374,27 @@
         initKeyboardShortcuts();
         initScrollTop();
         updateYear();
-        displayConfigStatus();
+
+        // ابھی Config موجود نہیں
+        // displayConfigStatus();
+
         initCounters();
-        
-        // Dashboard update (demo data)
         updateDashboard();
-        
-        // Hide loader
         hideLoader();
+
+        showToast("🎓 Welcome to Sanaullah ScaleFlow University", "success");
+
+        state.isInitialized = true;
+
+        console.log("Application initialized successfully");
+
+    } catch (error) {
+        console.error("Initialization Error:", error);
+
+        // کم از کم Loader ضرور Hide ہو جائے
+        hideLoader();
+    }
+}
         
         // Welcome toast
         showToast("🎓 Welcome to Sanaullah ScaleFlow University", "success");
