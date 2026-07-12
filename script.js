@@ -375,9 +375,6 @@
         initScrollTop();
         updateYear();
 
-        // ابھی Config موجود نہیں
-        // displayConfigStatus();
-
         initCounters();
         updateDashboard();
         hideLoader();
@@ -390,8 +387,6 @@
 
     } catch (error) {
         console.error("Initialization Error:", error);
-
-        // کم از کم Loader ضرور Hide ہو جائے
         hideLoader();
     }
 }
