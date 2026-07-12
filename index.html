@@ -1,157 +1,86 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
-    <!-- ==========================================
-         BASIC SETTINGS
-    ========================================== -->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ==========================================
-         WEBSITE INFORMATION
-    ========================================== -->
-
     <title>Sanaullah ScaleFlow University</title>
 
-    <meta name="description"
-        content="Sanaullah ScaleFlow University- Learn • Build • Earn • Grow">
+    <meta name="description" content="Sanaullah ScaleFlow University- Learn • Build • Earn • Grow">
+    <meta name="keywords" content="Learning, AI, Automation, Business, Freelancing">
+    <meta name="author" content="Sanaullah ScaleFlow University">
 
-    <meta name="keywords"
-        content="Learning, AI, Automation, Business, Freelancing">
+    <!-- Favicon (SVG emoji as placeholder) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 
-    <meta name="author"
-        content="Sanaullah ScaleFlow University">
-
-    <!-- ==========================================
-         EXTERNAL RESOURCES (CSS & JS)
-    ========================================== -->
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#FFC107">
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <!-- ==========================================
-         PARTICLES BACKGROUND
-    ========================================== -->
+    <!-- LOADER -->
+    <div id="loader">
+        <h2>⏳ Loading Sanaullah ScaleFlow University...</h2>
+    </div>
 
+    <!-- TOAST, MODAL, OVERLAY -->
+    <div id="toast-container"></div>
+    <div id="modal-container"></div>
+    <div id="page-overlay"></div>
+
+    <!-- PARTICLES BACKGROUND -->
     <div id="particles-js"></div>
 
-    <!-- ==========================================
-         MAIN APPLICATION
-    ========================================== -->
-
-    <div class="app-container">
+    <!-- MAIN APP -->
+    <div id="app" class="app-container">
 
         <!-- ==========================================
-             LEFT SIDEBAR
+             SIDEBAR (تمام لنکس کو IDs دی گئیں)
         ========================================== -->
-
         <aside class="sidebar">
 
-            <!-- ==========================================
-                 WEBSITE LOGO
-            ========================================== -->
-
             <div class="logo">
-
                 <h1>ثناءاللہ</h1>
-
                 <span>اسکیل یونیورسٹی</span>
-
             </div>
-
-            <!-- ==========================================
-                 USER CARD
-            ========================================== -->
 
             <div class="user-card">
-
-                <div class="avatar">
-
-                    👤
-
-                </div>
-
-                <h3>Guest User</h3>
-
-                <p>Level 1 • Beginner</p>
-
+                <div class="avatar">👤</div>
+                <h3 id="sidebarUserName">Guest User</h3>
+                <p id="sidebarUserLevel">Level 1 • Beginner</p>
                 <div class="brain-xp">
-
                     <strong>Brain XP</strong>
-
-                    <span>0 XP</span>
-
+                    <span id="sidebarXP">0 XP</span>
                 </div>
-
             </div>
 
-            <!-- ==========================================
-                 NAVIGATION
-            ========================================== -->
-
+            <!-- ✅ تمام مینو لنکس کو IDs دے دی گئیں -->
             <nav class="sidebar-menu">
-
-                <a href="#">
-                    🏠 Home
+                <a href="#" id="navHome">🏠 Home</a>
+                <a href="#" id="navLearning">📚 Learning Hub</a>
+                <a href="#" id="navAI">🤖 AI Mentor</a>
+                <a href="#" id="navAutomation">⚡ Automation Hub</a>
+                <a href="#" id="navTools">🛠 Tools Hub</a>
+                <a href="#" id="navBusiness">💼 Business Hub</a>
+                <a href="#" id="navFreelancing">💻 Freelancing</a>
+                <a href="#" id="navCertificates">🏆 Certificates</a>
+                <a href="#" id="navNotifications">
+                    🔔 Notifications
+                    <span id="notificationCount" class="notification-badge">0</span>
                 </a>
-
-                <a href="#">
-                    📚 Learning Hub
-                </a>
-
-                <a href="#">
-                    🤖 AI Mentor
-                </a>
-
-                <a href="#">
-                    ⚡ Automation Hub
-                </a>
-
-                <a href="#">
-                    🛠 Tools Hub
-                </a>
-
-                <a href="#">
-                    💼 Business Hub
-                </a>
-
-                <a href="#">
-                    💻 Freelancing
-                </a>
-
-                <a href="#">
-                    🏆 Certificates
-                </a>
-
-                <a href="#">
-                    👤 Dashboard
-                </a>
-
+                <a href="#" id="navDashboard">👤 Dashboard</a>
             </nav>
 
-            <!-- ==========================================
-                 QUICK ACTIONS
-            ========================================== -->
-
+            <!-- ✅ کوئیک ایکشن بٹنز کو IDs دے دی گئیں -->
             <div class="quick-actions">
-
-                <button>
-                    🌙 Theme
-                </button>
-
-                <button>
-                    🌐 Language
-                </button>
-
-                <button>
-                    📞 Support
-                </button>
-
+                <button id="btnTheme">🌙 Theme</button>
+                <button id="btnLanguage">🌐 Language</button>
+                <button id="btnSupport">📞 Support</button>
             </div>
 
         </aside>
@@ -159,216 +88,68 @@
         <!-- ==========================================
              MAIN CONTENT
         ========================================== -->
-
         <main class="main-content">
 
-            <!-- ==========================================
-                 LEARNING HOME HERO
-            ========================================== -->
-
+            <!-- HERO SECTION -->
             <section class="learning-home-hero">
-
                 <div class="welcome-card">
-
                     <div class="welcome-left">
-
-                        <span class="welcome-tag">
-                            👋 Welcome Back
-                        </span>
-
-                        <h1 id="studentName">
-                            Guest User
-                        </h1>
-
-                        <p class="welcome-text">
-
-                            Continue your learning journey.
-                            Every lesson makes you stronger.
-
-                        </p>
-
+                        <span class="welcome-tag">👋 Welcome Back</span>
+                        <h1 id="studentName">Guest User</h1>
+                        <p class="welcome-text">Continue your learning journey. Every lesson makes you stronger.</p>
                         <div class="hero-buttons">
-
-                            <button id="continueLearningBtn"
-                                class="primary-btn">
-
-                                ▶ Continue Learning
-
-                            </button>
-
-                            <button id="browseCoursesBtn"
-                                class="secondary-btn">
-
-                                📚 Browse Courses
-
-                            </button>
-
+                            <button id="continueLearningBtn" class="primary-btn">▶ Continue Learning</button>
+                            <button id="browseCoursesBtn" class="secondary-btn">📚 Browse Courses</button>
                         </div>
-
                     </div>
-
                     <div class="welcome-right">
-
-                        <div class="hero-stat">
-
-                            <span>⭐ Brain XP</span>
-
-                            <strong id="brainXP">
-
-                                0 XP
-
-                            </strong>
-
-                        </div>
-
-                        <div class="hero-stat">
-
-                            <span>🏆 Current Level</span>
-
-                            <strong id="currentLevel">
-
-                                Beginner
-
-                            </strong>
-
-                        </div>
-
-                        <div class="hero-stat">
-
-                            <span>🔥 Learning Streak</span>
-
-                            <strong id="learningStreak">
-
-                                0 Days
-
-                            </strong>
-
-                        </div>
-
-                        <div class="hero-stat">
-
-                            <span>📈 Overall Progress</span>
-
-                            <strong id="overallProgress">
-
-                                0%
-
-                            </strong>
-
-                        </div>
-
+                        <div class="hero-stat"><span>⭐ Brain XP</span><strong id="brainXP">0 XP</strong></div>
+                        <div class="hero-stat"><span>🏆 Current Level</span><strong id="currentLevel">Beginner</strong></div>
+                        <div class="hero-stat"><span>🔥 Learning Streak</span><strong id="learningStreak">0 Days</strong></div>
+                        <div class="hero-stat"><span>📈 Overall Progress</span><strong id="overallProgress">0%</strong></div>
                     </div>
-
                 </div>
-
             </section>
 
-            <!-- ==========================================
-                 SMART SEARCH
-            ========================================== -->
-
+            <!-- ✅ سرچ باکس کو ID دے دی گئی -->
             <section class="smart-search">
-
-                <input
-                    type="text"
-                    placeholder="Search courses, tools, AI mentor, business...">
-
+                <input id="globalSearch" type="text" placeholder="Search courses, tools, AI mentor, business...">
             </section>
 
-            <!-- ==========================================
-                 GATEWAY CARDS
-            ========================================== -->
-
+            <!-- ✅ تمام گیٹ وے کارڈز کو data-module دیا گیا -->
             <section class="gateway-grid">
-
-                <div class="gateway-card">
-
+                <div class="gateway-card" id="learningHubCard" data-module="learning">
                     <h3>🎓 Learning Hub</h3>
-
-                    <p>
-                        Professional courses with quizzes,
-                        projects and certificates.
-                    </p>
-
+                    <p>Professional courses with quizzes, projects and certificates.</p>
                 </div>
-
-                <div class="gateway-card">
-
+                <div class="gateway-card" id="aiHubCard" data-module="ai">
                     <h3>🤖 AI Mentor</h3>
-
-                    <p>
-                        Learn with your personal AI teacher
-                        and assistant.
-                    </p>
-
+                    <p>Learn with your personal AI teacher and assistant.</p>
                 </div>
-
-                <div class="gateway-card">
-
+                <div class="gateway-card" id="automationHubCard" data-module="automation">
                     <h3>⚡ Automation Hub</h3>
-
-                    <p>
-                        Google Workspace, Apps Script
-                        and automation projects.
-                    </p>
-
+                    <p>Google Workspace, Apps Script and automation projects.</p>
                 </div>
-
-                <div class="gateway-card">
-
+                <div class="gateway-card" id="toolsHubCard" data-module="tools">
                     <h3>🛠 Tools Hub</h3>
-
-                    <p>
-                        Free professional tools for
-                        productivity and development.
-                    </p>
-
+                    <p>Free professional tools for productivity and development.</p>
                 </div>
-
-                <div class="gateway-card">
-
+                <div class="gateway-card" id="businessHubCard" data-module="business">
                     <h3>💼 Business Hub</h3>
-
-                    <p>
-                        Build and manage your digital
-                        business from one dashboard.
-                    </p>
-
+                    <p>Build and manage your digital business from one dashboard.</p>
                 </div>
-
-                <div class="gateway-card">
-
+                <div class="gateway-card" id="freelancingHubCard" data-module="freelancing">
                     <h3>💻 Freelancing</h3>
-
-                    <p>
-                        Learn Fiverr, Upwork,
-                        proposals and client handling.
-                    </p>
-
+                    <p>Learn Fiverr, Upwork, proposals and client handling.</p>
                 </div>
-
-                <div class="gateway-card">
-
+                <div class="gateway-card" id="certificateHubCard" data-module="certificate">
                     <h3>🏆 Certificates</h3>
-
-                    <p>
-                        View, verify and download
-                        your certificates.
-                    </p>
-
+                    <p>View, verify and download your certificates.</p>
                 </div>
-
-                <div class="gateway-card">
-
+                <div class="gateway-card" id="dashboardHubCard" data-module="dashboard">
                     <h3>👤 Dashboard</h3>
-
-                    <p>
-                        Track your progress,
-                        Brain XP and achievements.
-                    </p>
-
+                    <p>Track your progress, Brain XP and achievements.</p>
                 </div>
-
             </section>
 
         </main>
@@ -376,151 +157,78 @@
         <!-- ==========================================
              RIGHT PANEL
         ========================================== -->
-
         <aside class="right-panel">
 
-            <!-- ==========================================
-                 LEARNING PROGRESS
-            ========================================== -->
-
             <div class="progress-card">
-
                 <h3>📈 Your Progress</h3>
-
-                <div class="progress-item">
-                    <span>Today's Learning</span>
-                    <strong>0%</strong>
-                </div>
-
-                <div class="progress-item">
-                    <span>Learning Streak</span>
-                    <strong>0 Days</strong>
-                </div>
-
-                <div class="progress-item">
-                    <span>Brain XP</span>
-                    <strong>0 XP</strong>
-                </div>
-
-                <div class="progress-item">
-                    <span>Current Level</span>
-                    <strong>Beginner</strong>
-                </div>
-
+                <div class="progress-item"><span>Today's Learning</span><strong id="todayLearning">0%</strong></div>
+                <div class="progress-item"><span>Learning Streak</span><strong id="streakDays">0 Days</strong></div>
+                <div class="progress-item"><span>Brain XP</span><strong id="xpTotal">0 XP</strong></div>
+                <div class="progress-item"><span>Current Level</span><strong id="levelCurrent">Beginner</strong></div>
             </div>
 
-            <!-- ==========================================
-                 TODAY'S GOAL
-            ========================================== -->
-
-            <div class="goal-card">
-
+            <div class="goal-card" id="todayGoal">
                 <h3>🎯 Today's Goal</h3>
-
-                <p>
-                    Complete your first lesson and earn
-                    your first Brain XP.
-                </p>
-
+                <p>Complete your first lesson and earn your first Brain XP.</p>
             </div>
-
-            <!-- ==========================================
-                 NOTIFICATIONS
-            ========================================== -->
 
             <div class="notification-card">
-
                 <h3>🔔 Notifications</h3>
-
-                <p>No new notifications.</p>
-
+                <div id="notificationList"><p>No notifications.</p></div>
             </div>
 
-            <!-- ==========================================
-                 QUICK STATS
-            ========================================== -->
-
             <div class="stats-card">
-
                 <h3>⚡ Quick Stats</h3>
-
-                <p>Courses: 0</p>
-
-                <p>Certificates: 0</p>
-
-                <p>Projects: 0</p>
-
+                <p>Courses: <span id="courseCount">0</span></p>
+                <p>Certificates: <span id="certificateCount">0</span></p>
+                <p>Projects: <span id="projectCount">0</span></p>
             </div>
 
         </aside>
 
         <!-- ==========================================
-             WEBSITE FOOTER
+             FOOTER (تمام لنکس کو IDs دے دی گئیں)
         ========================================== -->
-
         <footer class="footer">
-
             <div class="footer-left">
-
                 <h3>ثناءاللہ اسکیل یونیورسٹی</h3>
-
-                <p>
-                    Learn • Build • Earn • Grow
-                </p>
-
+                <p>Learn • Build • Earn • Grow</p>
             </div>
-
             <div class="footer-center">
-
-                <a href="#">About</a>
-
-                <a href="#">Privacy</a>
-
-                <a href="#">Terms</a>
-
-                <a href="#">Support</a>
-
+                <a href="#" id="footerAbout">About</a>
+                <a href="#" id="footerPrivacy">Privacy</a>
+                <a href="#" id="footerTerms">Terms</a>
+                <a href="#" id="footerSupport">Support</a>
             </div>
-
             <div class="footer-right">
-
-                <p>
-                    Version 1.0
-                </p>
-
-                <p>
-               Sanaullah ScaleFlow University۔ © 2026
-                </p>
-
+                <p>Version 1.0</p>
+                <p>Sanaullah ScaleFlow University۔ © <span id="currentYear">2026</span></p>
             </div>
-
         </footer>
 
     </div>
-    
+
+    <!-- SCROLL TO TOP -->
+    <button id="scrollTopBtn">⬆</button>
 
     <!-- ==========================================
          EXTERNAL LIBRARIES
     ========================================== -->
-
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
     <!-- ==========================================
-         MAIN JAVASCRIPT FILE
+         SCALEFLOW JAVASCRIPT ENGINES
     ========================================== -->
-
-    <script src="js/script.js"></script>
-    
     <script src="js/config.js"></script>
-<script src="js/utils.js"></script>
-<script src="js/api.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/learning.js"></script>
-<script src="js/quiz.js"></script>
-<script src="js/ai.js"></script>
-<script src="js/notification.js"></script>
-<script src="js/app.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/learning.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 
