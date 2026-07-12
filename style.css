@@ -1,904 +1,665 @@
 /*==========================================
-
-Sanaullah ScaleFlow University
-
-Module : Main Gateway
-
-Version : 1.0
-
+   Sanaullah ScaleFlow University
+   variables.css — Design Tokens
+   Version: Enterprise 1.0
 ==========================================*/
 
+:root {
+    /* ===== Brand Colors ===== */
+    --primary: #FFC107;
+    --primary-hover: #FFB300;
+    --primary-light: #FFF8E1;
+    --primary-dark: #F59E0B;
+
+    /* ===== Neutral Colors ===== */
+    --white: #ffffff;
+    --black: #111827;
+    --text: #374151;
+    --text-muted: #6B7280;
+    --border: #FFE082;
+    --border-light: #f3f4f6;
+    --bg-light: #fafafa;
+    --bg-card: #ffffff;
+    --bg-hover: #f9fafb;
+    --bg-zebra: #fafafa;
+
+    /* ===== Semantic Colors ===== */
+    --success: #22c55e;
+    --success-hover: #16a34a;
+    --success-bg: #dcfce7;
+    --success-text: #166534;
+
+    --error: #ef4444;
+    --error-hover: #dc2626;
+    --error-bg: #fee2e2;
+    --error-text: #991b1b;
+
+    --warning: #f59e0b;
+    --warning-hover: #d97706;
+    --warning-bg: #fef3c7;
+    --warning-text: #92400e;
+
+    --info: #3b82f6;
+    --info-hover: #2563eb;
+    --info-bg: #dbeafe;
+    --info-text: #1e40af;
+
+    /* ===== Difficulty Colors ===== */
+    --difficulty-beginner: #dcfce7;
+    --difficulty-beginner-text: #166534;
+    --difficulty-intermediate: #fef3c7;
+    --difficulty-intermediate-text: #92400e;
+    --difficulty-advanced: #fee2e2;
+    --difficulty-advanced-text: #991b1b;
+
+    /* ===== Achievement Rarity ===== */
+    --rare-color: #3b82f6;
+    --rare-bg: #eff6ff;
+    --epic-color: #8b5cf6;
+    --epic-bg: #f5f3ff;
+    --legendary-color: #f59e0b;
+    --legendary-bg: #fffbeb;
+
+    /* ===== Layout ===== */
+    --sidebar-width: 280px;
+    --right-width: 320px;
+
+    /* ===== Border Radius ===== */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-xl: 28px;
+    --radius-full: 50px;
+
+    /* ===== Shadows ===== */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.10);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.20);
+
+    /* ===== Transitions ===== */
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.2s ease;
+    --transition-slow: 0.6s ease;
+
+    /* ===== Glassmorphism ===== */
+    --glass-bg: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --glass-backdrop: blur(12px);
+
+    /* ===== Typography ===== */
+    --font-family: 'Segoe UI', Arial, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+
+    /* ===== Spacing ===== */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-8: 2rem;
+    --spacing-10: 2.5rem;
+    --spacing-12: 3rem;
+    --spacing-16: 4rem;
 
-/* ==========================================
-   CSS RESET
-========================================== */
+    /* ===== Z-Index System ===== */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-overlay: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    --z-toast: 1080;
+    --z-loader: 999999;
+    --z-max: 9999999;
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+    /* ===== Dark Mode Colors (Override in darkmode.css) ===== */
+    --dark-bg: #0f172a;
+    --dark-card: #1e293b;
+    --dark-border: #334155;
+    --dark-text: #f1f5f9;
+    --dark-muted: #94a3b8;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-
-    min-height:100vh;
-
-    overflow-x:hidden;
-
-    font-family:"Segoe UI",Arial,sans-serif;
-
-    background:#ffffff;
-
-    color:var(--black);
-
-    position:relative;
-
-}
-
-
-/* ==========================================
-   ROOT VARIABLES
-========================================== */
-
-:root{
-
-    --primary:#FFC107;
-    --primary-hover:#FFB300;
-
-    --white:#ffffff;
-    --black:#111827;
-
-    --text:#374151;
-    --border:#FFE082;
-
-    --sidebar-width:280px;
-    --right-width:320px;
-
-    --radius:18px;
-
-    --shadow:0 8px 25px rgba(0,0,0,.08);
-
-    --transition:.35s ease;
-
-}
-
-
-/* ==========================================
-   GLOBAL STYLES
-========================================== */
-
-a{
-
-    text-decoration:none;
-
-    color:inherit;
-
-}
-
-button{
-
-    cursor:pointer;
-
-    font-family:inherit;
-
-    border:none;
-
-    background:none;
-
-}
-
-img{
-
-    display:block;
-
-    max-width:100%;
-
-}
-
-/* ==========================================
-   PARTICLES BACKGROUND
-========================================== */
-
-#particles-js{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:-1;
-
-    background:#ffffff;
-
-}
-
-
-/* ==========================================
-   APP CONTAINER
-========================================== */
-
-.app-container{
-
-    width:100%;
-
-    min-height:100vh;
-
-    display:grid;
-
-    grid-template-columns:var(--sidebar-width) 1fr var(--right-width);
-
-}
-
-
-/* ==========================================
-   COMMON CARD STYLE
-========================================== */
-
-.gateway-card,
-.progress-card,
-.goal-card,
-.notification-card,
-.stats-card{
-
-    background:#ffffff;
-
-    border:2px solid var(--border);
-
-    border-radius:var(--radius);
-
-    box-shadow:var(--shadow);
-
-}
-
-/* ==========================================
-   LEFT SIDEBAR
-========================================== */
-
-.sidebar{
-
-    background:#ffffff;
-
-    border-right:2px solid var(--border);
-
-    padding:30px 20px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:25px;
-
-    position:sticky;
-
-    top:0;
-
-    height:100vh;
-
-}
-
-
-/* ==========================================
-   WEBSITE LOGO
-========================================== */
-
-.logo{
-
-    text-align:center;
-
-}
-
-.logo h1{
-
-    font-size:30px;
-
-    color:var(--black);
-
-    font-weight:800;
-
-}
-
-.logo span{
-
-    display:block;
-
-    margin-top:5px;
-
-    color:var(--primary);
-
-    font-size:18px;
-
-    font-weight:700;
-
-}
-
-
-/* ==========================================
-   USER CARD
-========================================== */
-
-.user-card{
-
-    background:#ffffff;
-
-    border:2px solid var(--border);
-
-    border-radius:var(--radius);
-
-    padding:20px;
-
-    text-align:center;
-
-    box-shadow:var(--shadow);
-
-}
-
-.avatar{
-
-    width:80px;
-
-    height:80px;
-
-    margin:0 auto 15px;
-
-    border-radius:50%;
-
-    background:var(--primary);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:36px;
-
-}
-
-.user-card h3{
-
-    margin-bottom:6px;
-
-}
-
-.user-card p{
-
-    color:var(--text);
-
-    margin-bottom:15px;
-
-}
-
-.brain-xp{
-
-    background:#FFF8E1;
-
-    border-radius:12px;
-
-    padding:10px;
-
-}
-
-
-/* ==========================================
-   SIDEBAR MENU
-========================================== */
-
-.sidebar-menu{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-
-}
-
-.sidebar-menu a{
-
-    padding:14px 18px;
-
-    border-radius:12px;
-
-    font-weight:600;
-
-    transition:var(--transition);
-
-}
-
-.sidebar-menu a:hover{
-
-    background:var(--primary);
-
-    color:#000;
-
-    transform:translateX(6px);
-
-}
-
-
-/* ==========================================
-   QUICK ACTIONS
-========================================== */
-
-.quick-actions{
-
-    margin-top:auto;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-
-}
-
-.quick-actions button{
-
-    background:var(--primary);
-
-    padding:12px;
-
-    border-radius:12px;
-
-    font-weight:700;
-
-    transition:var(--transition);
-
-}
-
-.quick-actions button:hover{
-
-    background:var(--primary-hover);
-
-    transform:translateY(-2px);
-
-}
-
-/* ==========================================
-   MAIN CONTENT
-========================================== */
-
-.main-content{
-
-    padding:40px;
-
-}
-
-
-/* ==========================================
-   HERO SECTION
-========================================== */
-
-.hero{
-
-    background:#ffffff;
-
-    border:2px solid var(--border);
-
-    border-radius:var(--radius);
-
-    padding:45px;
-
-    box-shadow:var(--shadow);
-
-    margin-bottom:30px;
-
-}
-
-.hero h1{
-
-    font-size:42px;
-
-    margin-bottom:15px;
-
-    color:var(--black);
-
-}
-
-.hero h1 span{
-
-    color:var(--primary);
-
-}
-
-.hero p{
-
-    font-size:18px;
-
-    color:var(--text);
-
-    margin-bottom:25px;
-
-}
-
-
-/* ==========================================
-   HERO BUTTONS
-========================================== */
-
-.hero-buttons{
-
-    display:flex;
-
-    gap:15px;
-
-    flex-wrap:wrap;
+/*==========================================
+   Sanaullah ScaleFlow University
+   reset.css — Base Reset
+   Version: Enterprise 1.0
+==========================================*/
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.primary-btn{
-
-    background:var(--primary);
-
-    color:#000;
-
-    padding:14px 28px;
-
-    border:none;
-
-    border-radius:12px;
-
-    font-weight:700;
-
-    transition:var(--transition);
-
-}
-
-.primary-btn:hover{
-
-    background:var(--primary-hover);
-
-    transform:translateY(-3px);
-
-}
-
-.secondary-btn{
-
-    background:#ffffff;
-
-    color:var(--black);
-
-    border:2px solid var(--primary);
-
-    padding:14px 28px;
-
-    border-radius:12px;
-
-    font-weight:700;
-
-    transition:var(--transition);
-
-}
-
-.secondary-btn:hover{
-
-    background:var(--primary);
-
-}
-
-
-/* ==========================================
-   SMART SEARCH
-========================================== */
-
-.smart-search{
-
-    margin-bottom:35px;
-
-}
-
-.smart-search input{
-
-    width:100%;
-
-    padding:18px 20px;
-
-    border:2px solid var(--border);
-
-    border-radius:14px;
-
-    font-size:16px;
-
-    outline:none;
-
-}
-
-.smart-search input:focus{
-
-    border-color:var(--primary);
-
-}
-
-
-/* ==========================================
-   GATEWAY GRID
-========================================== */
-
-.gateway-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-    gap:25px;
-
-}
-
-
-/* ==========================================
-   GATEWAY CARD
-========================================== */
-
-.gateway-card{
-
-    padding:25px;
-
-    transition:var(--transition);
-
-    cursor:pointer;
-
-}
-
-.gateway-card:hover{
-
-    transform:translateY(-8px);
-
-    border-color:var(--primary);
-
-}
-
-.gateway-card h3{
-
-    font-size:22px;
-
-    margin-bottom:15px;
-
-}
-
-.gateway-card p{
-
-    color:var(--text);
-
-    line-height:1.7;
-
-}
-
-/* ==========================================
-   RIGHT PANEL
-========================================== */
-
-.right-panel{
-
-    padding:30px;
-
-    background:#ffffff;
-
-    border-left:2px solid var(--border);
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
-}
-
-.progress-card,
-.goal-card,
-.notification-card,
-.stats-card{
-
-    padding:20px;
-
-}
-
-.progress-card h3,
-.goal-card h3,
-.notification-card h3,
-.stats-card h3{
-
-    margin-bottom:15px;
-
-}
-
-.progress-item{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-bottom:12px;
-
-    color:var(--text);
-
-}
-
-
-/* ==========================================
-   FOOTER
-========================================== */
-
-.footer{
-
-    grid-column:1 / -1;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:20px;
-
-    padding:25px 40px;
-
-    background:#ffffff;
-
-    border-top:2px solid var(--border);
-
-    margin-top:30px;
-
-}
-
-.footer-center{
-
-    display:flex;
-
-    gap:20px;
-
-}
-
-.footer-center a:hover{
-
-    color:var(--primary);
-
-}
-
-
-/* ==========================================
-   RESPONSIVE DESIGN
-========================================== */
-
-@media (max-width:1200px){
-
-    .app-container{
-
-        grid-template-columns:260px 1fr;
-
-    }
-
-    .right-panel{
-
-        display:none;
-
-    }
-
-}
-
-@media (max-width:768px){
-
-    .app-container{
-
-        display:flex;
-
-        flex-direction:column;
-
-    }
-
-    .sidebar{
-
-        position:relative;
-
-        height:auto;
-
-        border-right:none;
-
-        border-bottom:2px solid var(--border);
-
-    }
-
-    .hero{
-
-        padding:30px;
-
-    }
-
-    .hero h1{
-
-        font-size:30px;
-
-    }
-
-    .footer{
-
-        flex-direction:column;
-
-        text-align:center;
-
-    }
-
-}
-
-
-/* ==========================================
-   SMOOTH ANIMATIONS
-========================================== */
-
-.gateway-card,
-.user-card,
-.progress-card,
-.goal-card,
-.notification-card,
-.stats-card,
-button{
-
-    transition:all .35s ease;
-
+html {
+    scroll-behavior: smooth;
 }
-
-.gateway-card:hover,
-.user-card:hover,
-.progress-card:hover,
-.goal-card:hover,
-.notification-card:hover,
-.stats-card:hover{
-
-    transform:translateY(-5px);
 
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
-
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: var(--font-family);
+    background: var(--white);
+    color: var(--black);
+    position: relative;
 }
-
-/* ==========================================
-   LEARNING HOME HERO
-========================================== */
-
-.learning-home-hero{
 
-    margin-bottom:35px;
-
+a {
+    text-decoration: none;
+    color: inherit;
 }
-
-.welcome-card{
-
-    display:grid;
-
-    grid-template-columns:2fr 1fr;
-
-    gap:30px;
-
-    background:#ffffff;
-
-    border:2px solid var(--border);
 
-    border-radius:22px;
-
-    padding:35px;
-
-    box-shadow:var(--shadow);
-
+button {
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    background: none;
 }
-
-.welcome-tag{
-
-    display:inline-block;
-
-    background:#FFF8E1;
-
-    color:#000;
 
-    padding:8px 16px;
-
-    border-radius:30px;
-
-    font-weight:700;
-
-    margin-bottom:18px;
-
+img {
+    display: block;
+    max-width: 100%;
 }
-
-.welcome-left h1{
-
-    font-size:42px;
-
-    margin-bottom:15px;
 
+/* Selection */
+::selection {
+    background: var(--primary);
+    color: #000;
 }
 
-.welcome-text{
-
-    color:var(--text);
-
-    line-height:1.8;
-
-    margin-bottom:25px;
-
+/* Focus Visible (Accessibility) */
+:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
 }
-
-.welcome-right{
-
-    display:flex;
-
-    flex-direction:column;
 
-    gap:15px;
-
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
-
-.hero-stat{
-
-    background:#FFFDF5;
-
-    border:2px solid var(--border);
-
-    border-radius:16px;
-
-    padding:18px;
-
+::-webkit-scrollbar-track {
+    background: var(--border-light);
+    border-radius: var(--radius-full);
 }
-
-.hero-stat span{
-
-    display:block;
-
-    color:var(--text);
-
-    margin-bottom:8px;
-
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: var(--radius-full);
 }
-
-.hero-stat strong{
-
-    font-size:24px;
-
-    color:var(--black);
-
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
 }
-
-@media(max-width:900px){
 
-    .welcome-card{
-
-        grid-template-columns:1fr;
-
-    }
-
-}
+/*==========================================
+   Sanaullah ScaleFlow University
+   layout.css — Layout System
+   Version: Enterprise 1.0
+==========================================*/
 
-/* ==========================================
-   APP STATUS BOX (For Testing)
-========================================== */
-.app-status-box {
+/* ===== Particles Background ===== */
+#particles-js {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 12px 18px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    z-index: 99999;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-    border: 2px solid #ffffff;
-    max-width: 90%;
+    inset: 0;
+    z-index: -1;
+    background: var(--white);
+}
+
+/* ===== App Container ===== */
+#app,
+.app-container {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr var(--right-width);
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    background: var(--bg-card);
+    border-right: 2px solid var(--border);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* ===== Logo ===== */
+.logo {
     text-align: center;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    transition: opacity 0.3s ease;
+}
+.logo h1 {
+    font-size: 30px;
+    color: var(--black);
+    font-weight: 800;
+}
+.logo span {
+    display: block;
+    margin-top: 5px;
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.app-status-box.success {
-    background: #22c55e;
-    color: #ffffff;
+/* ===== Sidebar Menu ===== */
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sidebar-menu a {
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: var(--transition);
+}
+.sidebar-menu a:hover {
+    background: var(--primary);
+    color: #000;
+    transform: translateX(6px);
+}
+.sidebar-menu a.active {
+    background: var(--primary);
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+.sidebar-menu a.active:hover {
+    transform: translateX(0);
 }
 
-.app-status-box.warning {
-    background: #f59e0b;
-    color: #ffffff;
+/* ===== Quick Actions ===== */
+.quick-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.quick-actions button {
+    background: var(--primary);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    transition: var(--transition);
+}
+.quick-actions button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
 }
 
-.app-status-box.error {
-    background: #ef4444;
-    color: #ffffff;
+/* ===== Main Content ===== */
+.main-content {
+    padding: 40px;
+    background: var(--bg-light);
 }
+
+/* ===== Right Panel ===== */
+.right-panel {
+    padding: 30px;
+    background: var(--bg-card);
+    border-left: 2px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===== Footer ===== */
+.footer {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 25px 40px;
+    background: var(--bg-card);
+    border-top: 2px solid var(--border);
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+.footer-center {
+    display: flex;
+    gap: 20px;
+}
+.footer-center a:hover {
+    color: var(--primary);
+}
+
+/*==========================================
+   Sanaullah ScaleFlow University
+   04-components.css — UI Components (Master)
+   Version: Enterprise 1.0
+==========================================*/
+
+/* ===== Buttons ===== */
+.primary-btn {
+    background: var(--primary);
+    color: #000;
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    transition: var(--transition);
+    cursor: pointer;
+}
+.primary-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.secondary-btn {
+    background: var(--white);
+    color: var(--black);
+    border: 2px solid var(--primary);
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    transition: var(--transition);
+    cursor: pointer;
+}
+.secondary-btn:hover {
+    background: var(--primary);
+    transform: translateY(-3px);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    pointer-events: none;
+}
+
+/* ===== Cards ===== */
+.card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== Loader ===== */
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-loader);
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+#loader h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    animation: pulse 1.5s ease-in-out infinite;
+    margin-top: 20px;
+}
+#loader::before {
+    content: '';
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* ===== Toast ===== */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 380px;
+    width: 100%;
+}
+.toast {
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: var(--shadow-lg);
+    animation: slideInRight 0.4s ease;
+    border-left: 4px solid transparent;
+}
+.toast-success { background: var(--success-bg); color: var(--success-text); border-left-color: var(--success); }
+.toast-error { background: var(--error-bg); color: var(--error-text); border-left-color: var(--error); }
+.toast-warning { background: var(--warning-bg); color: var(--warning-text); border-left-color: var(--warning); }
+.toast-info { background: var(--info-bg); color: var(--info-text); border-left-color: var(--info); }
+
+/* ===== Modal ===== */
+#modal-container {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.modal {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    animation: zoomIn 0.3s ease;
+}
+.modal-header {
+    padding: 20px 24px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header h2 { font-size: 20px; font-weight: 700; }
+.modal-close {
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text);
+    transition: var(--transition);
+    line-height: 1;
+}
+.modal-close:hover { color: var(--black); transform: rotate(90deg); }
+.modal-body { padding: 24px; }
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 2px solid var(--border);
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* ===== Overlay ===== */
+#page-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ===== Scroll Top Button ===== */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #000;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    z-index: var(--z-fixed);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+#scrollTopBtn:hover { background: var(--primary-hover); transform: translateY(-4px) scale(1.05); box-shadow: var(--shadow-lg); }
+
+/* ===== Notification Badge ===== */
+.notification-badge {
+    background: var(--primary);
+    color: #000;
+    padding: 2px 10px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 8px;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+/* ===== Badge Library ===== */
+.badge-ai { background: var(--epic-color); color: #fff; padding: 2px 12px; border-radius: var(--radius-full); font-size: 11px; font-weight: 700; }
+.badge-premium { background: linear-gradient(135deg, var(--warning), #f97316); color: #fff; padding: 2px 12px; border-radius: var(--radius-full); font-size: 11px; font-weight: 700; }
+.badge-new { background: var(--error); color: #fff; padding: 2px 12px; border-radius: var(--radius-full); font-size: 11px; font-weight: 700; }
+.badge-pro { background: var(--primary); color: #000; padding: 2px 12px; border-radius: var(--radius-full); font-size: 11px; font-weight: 700; }
+.badge-free { background: var(--border-light); color: var(--text); padding: 2px 12px; border-radius: var(--radius-full); font-size: 11px; font-weight: 700; }
+
+/* ===== Tabs ===== */
+.tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--border); margin-bottom: 20px; }
+.tab {
+    padding: 12px 24px;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 3px solid transparent;
+    transition: var(--transition);
+    cursor: pointer;
+}
+.tab:hover { color: var(--black); }
+.tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-content { display: none; animation: fadeIn 0.3s ease; }
+.tab-content.active { display: block; }
+
+/* ===== Accordion ===== */
+.accordion { border: 2px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-header {
+    padding: 16px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+.accordion-header:hover { background: var(--bg-hover); }
+.accordion-body { padding: 0 20px 20px; display: none; }
+.accordion-body.open { display: block; }
+.accordion-header .arrow { transition: transform 0.3s ease; }
+.accordion-header .arrow.open { transform: rotate(180deg); }
+
+/* ===== Dropdown ===== */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-dropdown);
+    padding: 6px 0;
+    animation: fadeInUp 0.2s ease;
+}
+.dropdown-menu.show { display: block; }
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    transition: var(--transition);
+    font-weight: 500;
+}
+.dropdown-menu a:hover { background: var(--primary); color: #000; }
+.dropdown-menu .divider { height: 1px; background: var(--border); margin: 4px 12px; }
+
+/* ===== Breadcrumb ===== */
+.breadcrumb { display: flex; gap: 8px; padding: 12px 0; font-size: var(--font-size-sm); }
+.breadcrumb a { color: var(--text); transition: var(--transition); }
+.breadcrumb a:hover { color: var(--primary); }
+.breadcrumb .separator { color: var(--text); }
+.breadcrumb .current { font-weight: 700; color: var(--black); }
+
+/* ===== Floating Action Button ===== */
+.fab {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #000;
+    font-size: 28px;
+    border: none;
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-fixed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+.fab:hover { transform: scale(1.1) rotate(90deg); background: var(--primary-hover); }
+
+==================================================================
+Sanaullah ScaleFlow University
+
+CSS Architecture: 13 Modular Files
+Version: Enterprise 1.0
+STATUS: ✅ LOCKED
+
+📁 01-variables.css    → تمام ڈیزائن ٹوکنز (Colors, Typography, Spacing, Z-Index, Shadows)
+📁 02-reset.css        → ری سیٹ اور بنیادی اسٹائل
+📁 03-layout.css       → گرڈ، سائیڈبار، فوٹر، کنٹینر
+📁 04-components.css   → بٹنز، کارڈز، لوڈر، ٹوسٹ، موڈل، اوورلے، بیجز، ٹیبز، ایکارڈین، ڈراپ ڈاؤن، بریڈکرمب، ایف اے بی
+📁 05-dashboard.css    → ڈیش بورڈ ویجٹس، سٹیٹس، چارٹس، ایکٹیویٹی، پراگرس
+📁 06-courses.css      → کورس کارڈز، ڈفی کلٹی، ریٹنگ، انرول
+📁 07-achievements.css → اچیومنٹ کارڈز (Locked, Unlocked, Rare, Epic, Legendary)
+📁 08-certificates.css → سرٹیفکیٹ پریویو، پرنٹ ایبل، کیو آر، واٹر مارک
+📁 09-forms.css        → چیک باکس، ریڈیو، ٹوگل، رینج، ان پٹ ویلڈیشن
+📁 10-tables.css       → ٹیبلز (ریسپانسیو، سورٹیبل، ہوور، زیبرا)
+📁 11-animations.css   → تمام اینیمیشنز (fadeIn, slideUp, zoomIn, pulse, shimmer, floating)
+📁 12-darkmode.css     → تمام ڈارک موڈ اوور رائیڈز
+📁 13-responsive.css   → تمام ریسپانسیو بریک پوائنٹس
+
+==================================================================
