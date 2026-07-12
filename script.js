@@ -411,3 +411,82 @@ document.getElementById("configTest").innerHTML =
 `;
 
 console.log("🚀 Sanaullah ScaleFlow University Loaded Successfully");
+
+<!-- ==========================================
+     DASHBOARD JS (INLINE - FOR TESTING)
+========================================== -->
+<script>
+(function() {
+    "use strict";
+
+    // Demo Data
+    const DASHBOARD_DATA = {
+        name: 'Sanaullah',
+        xp: '250 XP',
+        level: 'Level 5',
+        streak: '7 Days',
+        progress: '75%',
+        todayLearning: '65%',
+        courses: 12,
+        certificates: 4,
+        projects: 3
+    };
+
+    function updateDashboard() {
+        console.log('📊 [dashboard.js] Updating Dashboard...');
+
+        // Hero Section
+        const studentName = document.getElementById('studentName');
+        const brainXP = document.getElementById('brainXP');
+        const currentLevel = document.getElementById('currentLevel');
+        const learningStreak = document.getElementById('learningStreak');
+        const overallProgress = document.getElementById('overallProgress');
+
+        if (studentName) studentName.textContent = DASHBOARD_DATA.name;
+        if (brainXP) brainXP.textContent = DASHBOARD_DATA.xp;
+        if (currentLevel) currentLevel.textContent = DASHBOARD_DATA.level;
+        if (learningStreak) learningStreak.textContent = DASHBOARD_DATA.streak;
+        if (overallProgress) overallProgress.textContent = DASHBOARD_DATA.progress;
+
+        // Sidebar
+        const sidebarName = document.getElementById('sidebarUserName');
+        const sidebarLevel = document.getElementById('sidebarUserLevel');
+        const sidebarXP = document.getElementById('sidebarXP');
+
+        if (sidebarName) sidebarName.textContent = DASHBOARD_DATA.name;
+        if (sidebarLevel) sidebarLevel.textContent = DASHBOARD_DATA.level + ' • Advanced';
+        if (sidebarXP) sidebarXP.textContent = DASHBOARD_DATA.xp;
+
+        // Right Panel Progress
+        const todayLearning = document.getElementById('todayLearning');
+        const streakDays = document.getElementById('streakDays');
+        const xpTotal = document.getElementById('xpTotal');
+        const levelCurrent = document.getElementById('levelCurrent');
+
+        if (todayLearning) todayLearning.textContent = DASHBOARD_DATA.todayLearning;
+        if (streakDays) streakDays.textContent = DASHBOARD_DATA.streak;
+        if (xpTotal) xpTotal.textContent = DASHBOARD_DATA.xp;
+        if (levelCurrent) levelCurrent.textContent = DASHBOARD_DATA.level;
+
+        // Quick Stats
+        const courseCount = document.getElementById('courseCount');
+        const certificateCount = document.getElementById('certificateCount');
+        const projectCount = document.getElementById('projectCount');
+
+        if (courseCount) courseCount.textContent = DASHBOARD_DATA.courses;
+        if (certificateCount) certificateCount.textContent = DASHBOARD_DATA.certificates;
+        if (projectCount) projectCount.textContent = DASHBOARD_DATA.projects;
+
+        console.log('✅ [dashboard.js] Dashboard Updated Successfully!');
+    }
+
+    // Run when page is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateDashboard);
+    } else {
+        updateDashboard();
+    }
+
+})();
+</script>
+
