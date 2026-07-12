@@ -1,492 +1,421 @@
 /*==========================================
   Sanaullah ScaleFlow University
   Module : Main Gateway
-  Version : 1.0
+  Version : Enterprise 1.0
+  Status : ✅ Ready for Lock
 ==========================================*/
 
-"use strict";
+(function(global) {
+    "use strict";
 
-/* ==========================================
-   GLOBAL DOM ELEMENTS
-========================================== */
+    // ==========================================
+    // 1. DEBUG MODE (Issue 5 حل)
+    // ==========================================
+    const DEBUG = global.__CONFIG?.DEBUG !== undefined 
+        ? global.__CONFIG.DEBUG 
+        : true; // Default to true for development
 
-const body = document.body;
-
-const appContainer = document.querySelector(".app-container");
-
-const sidebar = document.querySelector(".sidebar");
-
-const mainContent = document.querySelector(".main-content");
-
-const rightPanel = document.querySelector(".right-panel");
-
-const hero = document.querySelector(".learning-home-hero");
-const searchInput = document.querySelector(".smart-search input");
-
-const gatewayCards = document.querySelectorAll(".gateway-card");
-
-const heroButtons = document.querySelectorAll(".hero-buttons button");
-
-const sidebarLinks = document.querySelectorAll(".sidebar-menu a");
-
-const quickButtons = document.querySelectorAll(".quick-actions button");
-
-/* ==========================================
-   GLOBAL VARIABLES
-========================================== */
-
-let currentGateway = null;
-
-let searchKeyword = "";
-
-let animationSpeed = 350;
-
-/* ==========================================
-   INITIALIZE APPLICATION
-========================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    initializeApp();
-
-});
-
-/* ==========================================
-   MAIN INITIALIZER
-========================================== */
-
-function initializeApp() {
-
-    initializeParticles();
-
-    console.log("✅ Sanaullah ScaleFlow University Loaded");
-
-}
-
-/* ==========================================
-   PARTICLES INITIALIZER
-========================================== */
-
-function initializeParticles() {
-
-    if (typeof particlesJS === "undefined") return;
-
-    particlesJS("particles-js", {
-
-        particles: {
-
-            number: {
-                value: 60
-            },
-
-            color: {
-                value: "#FFC107"
-            },
-
-            shape: {
-                type: "circle"
-            },
-
-            opacity: {
-                value: 0.3
-            },
-
-            size: {
-                value: 3
-            },
-
-            move: {
-                enable: true,
-                speed: 2
-            }
-
+    function log() {
+        if (DEBUG) {
+            console.log.apply(console, arguments);
         }
-
-    });
-
-}
-
-/* ==========================================
-   SMART SEARCH
-========================================== */
-
-if (searchInput) {
-
-    searchInput.addEventListener("input", function () {
-
-        searchKeyword = this.value.toLowerCase().trim();
-
-        gatewayCards.forEach(card => {
-
-            const title = card.querySelector("h3").textContent.toLowerCase();
-
-            const text = card.querySelector("p").textContent.toLowerCase();
-
-            if (title.includes(searchKeyword) || text.includes(searchKeyword)) {
-
-                card.style.display = "block";
-
-            } else {
-
-                card.style.display = "none";
-
-            }
-
-        });
-
-    });
-
-}
-
-
-/* ==========================================
-   GATEWAY CARD CLICK
-========================================== */
-
-gatewayCards.forEach(card => {
-
-    card.addEventListener("click", function () {
-
-        currentGateway = this.querySelector("h3").textContent;
-
-        console.log("Gateway:", currentGateway);
-
-        this.style.transform = "scale(0.98)";
-
-        setTimeout(() => {
-
-            this.style.transform = "";
-
-        }, 150);
-
-    });
-
-});
-
-
-/* ==========================================
-   HERO BUTTON EVENTS
-========================================== */
-
-heroButtons.forEach(button => {
-
-    button.addEventListener("click", function () {
-
-        console.log("Button Clicked:", this.textContent);
-
-    });
-
-});
-
-
-/* ==========================================
-   SIDEBAR MENU
-========================================== */
-
-sidebarLinks.forEach(link => {
-
-    link.addEventListener("click", function () {
-
-        sidebarLinks.forEach(item => {
-
-            item.classList.remove("active");
-
-        });
-
-        this.classList.add("active");
-
-    });
-
-});
-
-/* ==========================================
-   QUICK ACTION BUTTONS
-========================================== */
-
-quickButtons.forEach(button => {
-
-    button.addEventListener("click", function () {
-
-        const action = this.textContent.trim();
-
-        showToast(action + " clicked.");
-
-        console.log("Quick Action:", action);
-
-    });
-
-});
-
-
-/* ==========================================
-   TOAST NOTIFICATION
-========================================== */
-
-function showToast(message) {
-
-    const toast = document.createElement("div");
-
-    toast.className = "toast-notification";
-
-    toast.textContent = message;
-
-    toast.style.position = "fixed";
-    toast.style.bottom = "25px";
-    toast.style.right = "25px";
-    toast.style.padding = "14px 20px";
-    toast.style.background = "#FFC107";
-    toast.style.color = "#111827";
-    toast.style.borderRadius = "12px";
-    toast.style.boxShadow = "0 10px 25px rgba(0,0,0,.15)";
-    toast.style.zIndex = "9999";
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-
-        toast.remove();
-
-    }, 3000);
-
-}
-
-
-/* ==========================================
-   KEYBOARD SHORTCUTS
-========================================== */
-
-document.addEventListener("keydown", function(event){
-
-    if(event.ctrlKey && event.key.toLowerCase()==="k"){
-
-        event.preventDefault();
-
-        if(searchInput){
-
-            searchInput.focus();
-
-        }
-
     }
 
-    if(event.key==="Escape"){
+    // ==========================================
+    // 2. NAMESPACE (Issue 6 حل)
+    // ==========================================
+    const ScaleFlow = global.ScaleFlow || {};
 
-        if(searchInput){
+    // ==========================================
+    // 3. DOM ELEMENTS (Safe access)
+    // ==========================================
+    const DOM = {
+        body: document.body,
+        appContainer: document.querySelector("#app, .app-container"),
+        sidebar: document.querySelector(".sidebar"),
+        mainContent: document.querySelector(".main-content"),
+        rightPanel: document.querySelector(".right-panel"),
+        hero: document.querySelector(".learning-home-hero"),
+        searchInput: document.querySelector("#globalSearch, .smart-search input"),
+        gatewayCards: document.querySelectorAll(".gateway-card"),
+        heroButtons: document.querySelectorAll(".hero-buttons button"),
+        sidebarLinks: document.querySelectorAll(".sidebar-menu a"),
+        quickButtons: document.querySelectorAll(".quick-actions button"),
+        scrollBtn: document.getElementById("scrollTopBtn"),
+        yearEl: document.getElementById("currentYear"),
+        loader: document.getElementById("loader"),
+        configTest: document.getElementById("configTest"),
+        toastContainer: document.getElementById("toast-container")
+    };
 
-            searchInput.value="";
+    // ==========================================
+    // 4. STATE
+    // ==========================================
+    const state = {
+        currentGateway: null,
+        searchKeyword: "",
+        animationSpeed: 350,
+        isInitialized: false
+    };
 
-            searchInput.dispatchEvent(new Event("input"));
-
+    // ==========================================
+    // 5. PARTICLES (Issue 3 حل - Combined)
+    // ==========================================
+    function initParticles() {
+        if (typeof particlesJS === "undefined") {
+            log("⚠️ particlesJS not loaded");
+            return;
         }
-
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 60 },
+                color: { value: "#FFC107" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3 },
+                size: { value: 3 },
+                move: { enable: true, speed: 2 }
+            }
+        });
+        log("✨ Particles initialized");
     }
 
-});
-
-
-/* ==========================================
-   PAGE LOADED
-========================================== */
-
-window.addEventListener("load", function(){
-
-    showToast("Welcome to Sanaullah ScaleFlow University");
-
-});
-
-/* ==========================================
-   Sanaullah ScaleFlow University
-   script.js — Part 4 (Final)
-========================================== */
-
-/* ==========================================
-   COUNTER ANIMATION
-========================================== */
-
-function animateCounter(element, target, duration = 1500) {
-
-    let start = 0;
-    const increment = target / (duration / 16);
-
-    function update() {
-
-        start += increment;
-
-        if (start >= target) {
-            element.textContent = target;
+    // ==========================================
+    // 6. TOAST (Issue 4 حل - No inline CSS)
+    // ==========================================
+    function showToast(message, type = "info") {
+        const container = DOM.toastContainer;
+        if (!container) {
+            // Fallback if container doesn't exist
+            const toast = document.createElement("div");
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
             return;
         }
 
-        element.textContent = Math.floor(start);
-
-        requestAnimationFrame(update);
-    }
-
-    update();
-}
-
-document.querySelectorAll("[data-counter]").forEach(counter => {
-
-    const target = Number(counter.dataset.counter);
-
-    animateCounter(counter, target);
-
-});
-
-
-/* ==========================================
-   SCROLL TO TOP BUTTON
-========================================== */
-
-const scrollBtn = document.getElementById("scrollTopBtn");
-
-if (scrollBtn) {
-
-    window.addEventListener("scroll", () => {
-
-        scrollBtn.style.display =
-            window.scrollY > 300 ? "block" : "none";
-
-    });
-
-    scrollBtn.addEventListener("click", () => {
-
-        window.scrollTo({
-
-            top: 0,
-            behavior: "smooth"
-
-        });
-
-    });
-
-}
-
-
-/* ==========================================
-   CURRENT YEAR
-========================================== */
-
-const year = document.getElementById("currentYear");
-
-if (year) {
-
-    year.textContent = new Date().getFullYear();
-
-}
-
-
-/* ==========================================
-   PAGE LOADER
-========================================== */
-
-window.addEventListener("load", () => {
-
-    const loader = document.getElementById("loader");
-
-    if (loader) {
-
-        loader.style.opacity = "0";
-
+        const toast = document.createElement("div");
+        toast.className = `toast toast-${type}`;
+        toast.textContent = message;
+        container.appendChild(toast);
+        
         setTimeout(() => {
+            toast.style.opacity = "0";
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
 
-            loader.style.display = "none";
+    // ==========================================
+    // 7. SMART SEARCH
+    // ==========================================
+    function initSearch() {
+        if (!DOM.searchInput) return;
+        
+        DOM.searchInput.addEventListener("input", function() {
+            state.searchKeyword = this.value.toLowerCase().trim();
+            
+            DOM.gatewayCards.forEach(card => {
+                const title = card.querySelector("h3")?.textContent?.toLowerCase() || "";
+                const text = card.querySelector("p")?.textContent?.toLowerCase() || "";
+                const match = title.includes(state.searchKeyword) || text.includes(state.searchKeyword);
+                card.style.display = match ? "block" : "none";
+            });
+        });
+        
+        log("🔍 Search initialized");
+    }
 
+    // ==========================================
+    // 8. GATEWAY CARDS
+    // ==========================================
+    function initGatewayCards() {
+        DOM.gatewayCards.forEach(card => {
+            card.addEventListener("click", function() {
+                const title = this.querySelector("h3")?.textContent || "Unknown";
+                state.currentGateway = title;
+                log("Gateway clicked:", title);
+                
+                this.style.transform = "scale(0.98)";
+                setTimeout(() => {
+                    this.style.transform = "";
+                }, 150);
+            });
+        });
+        log("🏷️ Gateway cards initialized");
+    }
+
+    // ==========================================
+    // 9. HERO BUTTONS
+    // ==========================================
+    function initHeroButtons() {
+        DOM.heroButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                log("Hero button clicked:", this.textContent?.trim());
+                
+                // Handle Continue Learning button
+                if (this.id === "continueLearningBtn") {
+                    showToast("📚 Loading your learning dashboard...", "info");
+                }
+                // Handle Browse Courses button
+                if (this.id === "browseCoursesBtn") {
+                    showToast("📖 Opening course catalog...", "info");
+                }
+            });
+        });
+        log("🎯 Hero buttons initialized");
+    }
+
+    // ==========================================
+    // 10. SIDEBAR (Active state)
+    // ==========================================
+    function initSidebar() {
+        DOM.sidebarLinks.forEach(link => {
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+                
+                // Remove active from all
+                DOM.sidebarLinks.forEach(item => {
+                    item.classList.remove("active");
+                });
+                
+                // Add active to clicked
+                this.classList.add("active");
+                log("Sidebar navigation:", this.textContent?.trim());
+            });
+        });
+        log("📋 Sidebar initialized");
+    }
+
+    // ==========================================
+    // 11. QUICK ACTIONS
+    // ==========================================
+    function initQuickActions() {
+        DOM.quickButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const action = this.textContent?.trim() || "Action";
+                log("Quick action:", action);
+                showToast(`${action} clicked`, "info");
+            });
+        });
+        log("⚡ Quick actions initialized");
+    }
+
+    // ==========================================
+    // 12. KEYBOARD SHORTCUTS
+    // ==========================================
+    function initKeyboardShortcuts() {
+        document.addEventListener("keydown", function(event) {
+            // Ctrl+K for search
+            if (event.ctrlKey && event.key.toLowerCase() === "k") {
+                event.preventDefault();
+                if (DOM.searchInput) {
+                    DOM.searchInput.focus();
+                }
+            }
+            
+            // Escape to clear search
+            if (event.key === "Escape") {
+                if (DOM.searchInput) {
+                    DOM.searchInput.value = "";
+                    DOM.searchInput.dispatchEvent(new Event("input"));
+                }
+            }
+        });
+        log("⌨️ Keyboard shortcuts initialized");
+    }
+
+    // ==========================================
+    // 13. SCROLL TO TOP
+    // ==========================================
+    function initScrollTop() {
+        if (!DOM.scrollBtn) return;
+        
+        window.addEventListener("scroll", function() {
+            DOM.scrollBtn.style.display = window.scrollY > 300 ? "flex" : "none";
+        });
+        
+        DOM.scrollBtn.addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+        log("⬆️ Scroll to top initialized");
+    }
+
+    // ==========================================
+    // 14. CURRENT YEAR
+    // ==========================================
+    function updateYear() {
+        if (DOM.yearEl) {
+            DOM.yearEl.textContent = new Date().getFullYear();
+        }
+        log("📅 Year updated");
+    }
+
+    // ==========================================
+    // 15. LOADER (Issue 3 حل - Combined)
+    // ==========================================
+    function hideLoader() {
+        if (!DOM.loader) return;
+        
+        DOM.loader.style.opacity = "0";
+        setTimeout(() => {
+            DOM.loader.style.display = "none";
         }, 500);
-
+        log("⏳ Loader hidden");
     }
 
-});
+    // ==========================================
+    // 16. CONFIG TEST (Issue 2 حل)
+    // ==========================================
+    function displayConfigStatus() {
+        const el = DOM.configTest;
+        if (!el) return;
+        
+        if (global.__CONFIG) {
+            const config = global.__CONFIG;
+            el.innerHTML = `
+                <h3>${config.APP_NAME || config.UNIVERSITY?.name || 'ScaleFlow'}</h3>
+                <p>${config.APP_VERSION || config.VERSION || 'Enterprise 1.0'}</p>
+                <p>${config.APP_ENV || 'development'}</p>
+            `;
+        } else {
+            el.innerHTML = `<p>⚠️ Config not loaded</p>`;
+        }
+        log("📊 Config status displayed");
+    }
 
+    // ==========================================
+    // 17. COUNTER ANIMATION (Issue 3 حل - Combined)
+    // ==========================================
+    function initCounters() {
+        document.querySelectorAll("[data-counter]").forEach(counter => {
+            const target = Number(counter.dataset.counter);
+            if (isNaN(target) || target <= 0) return;
+            
+            let start = 0;
+            const duration = 1500;
+            const increment = target / (duration / 16);
+            
+            function update() {
+                start += increment;
+                if (start >= target) {
+                    counter.textContent = target;
+                    return;
+                }
+                counter.textContent = Math.floor(start);
+                requestAnimationFrame(update);
+            }
+            update();
+        });
+        log("🔢 Counters initialized");
+    }
 
-/* ==========================================
-   CONSOLE MESSAGE
-========================================== */
-
-document.getElementById("configTest").innerHTML =
-`
-<h3>${window.__CONFIG.APP_NAME}</h3>
-<p>${window.__CONFIG.APP_VERSION}</p>
-<p>${window.__CONFIG.APP_ENV}</p>
-`;
-
-console.log("🚀 Sanaullah ScaleFlow University Loaded Successfully");
-
-<!-- ==========================================
-     DASHBOARD JS (INLINE - FOR TESTING)
-========================================== -->
-<script>
-(function() {
-    "use strict";
-
-    // Demo Data
-    const DASHBOARD_DATA = {
-        name: 'Sanaullah',
-        xp: '250 XP',
-        level: 'Level 5',
-        streak: '7 Days',
-        progress: '75%',
-        todayLearning: '65%',
-        courses: 12,
-        certificates: 4,
-        projects: 3
-    };
-
-    function updateDashboard() {
-        console.log('📊 [dashboard.js] Updating Dashboard...');
-
+    // ==========================================
+    // 18. DASHBOARD UPDATE (Issue 7 حل)
+    // ==========================================
+    function updateDashboard(data) {
+        const defaultData = {
+            name: 'Sanaullah',
+            xp: '250 XP',
+            level: 'Level 5',
+            streak: '7 Days',
+            progress: '75%',
+            todayLearning: '65%',
+            courses: 12,
+            certificates: 4,
+            projects: 3
+        };
+        
+        const D = data || defaultData;
+        
+        const el = (id) => document.getElementById(id);
+        
         // Hero Section
-        const studentName = document.getElementById('studentName');
-        const brainXP = document.getElementById('brainXP');
-        const currentLevel = document.getElementById('currentLevel');
-        const learningStreak = document.getElementById('learningStreak');
-        const overallProgress = document.getElementById('overallProgress');
-
-        if (studentName) studentName.textContent = DASHBOARD_DATA.name;
-        if (brainXP) brainXP.textContent = DASHBOARD_DATA.xp;
-        if (currentLevel) currentLevel.textContent = DASHBOARD_DATA.level;
-        if (learningStreak) learningStreak.textContent = DASHBOARD_DATA.streak;
-        if (overallProgress) overallProgress.textContent = DASHBOARD_DATA.progress;
-
+        if (el('studentName')) el('studentName').textContent = D.name;
+        if (el('brainXP')) el('brainXP').textContent = D.xp;
+        if (el('currentLevel')) el('currentLevel').textContent = D.level;
+        if (el('learningStreak')) el('learningStreak').textContent = D.streak;
+        if (el('overallProgress')) el('overallProgress').textContent = D.progress;
+        
         // Sidebar
-        const sidebarName = document.getElementById('sidebarUserName');
-        const sidebarLevel = document.getElementById('sidebarUserLevel');
-        const sidebarXP = document.getElementById('sidebarXP');
-
-        if (sidebarName) sidebarName.textContent = DASHBOARD_DATA.name;
-        if (sidebarLevel) sidebarLevel.textContent = DASHBOARD_DATA.level + ' • Advanced';
-        if (sidebarXP) sidebarXP.textContent = DASHBOARD_DATA.xp;
-
-        // Right Panel Progress
-        const todayLearning = document.getElementById('todayLearning');
-        const streakDays = document.getElementById('streakDays');
-        const xpTotal = document.getElementById('xpTotal');
-        const levelCurrent = document.getElementById('levelCurrent');
-
-        if (todayLearning) todayLearning.textContent = DASHBOARD_DATA.todayLearning;
-        if (streakDays) streakDays.textContent = DASHBOARD_DATA.streak;
-        if (xpTotal) xpTotal.textContent = DASHBOARD_DATA.xp;
-        if (levelCurrent) levelCurrent.textContent = DASHBOARD_DATA.level;
-
+        if (el('sidebarUserName')) el('sidebarUserName').textContent = D.name;
+        if (el('sidebarUserLevel')) el('sidebarUserLevel').textContent = D.level + ' • Advanced';
+        if (el('sidebarXP')) el('sidebarXP').textContent = D.xp;
+        
+        // Right Panel
+        if (el('todayLearning')) el('todayLearning').textContent = D.todayLearning;
+        if (el('streakDays')) el('streakDays').textContent = D.streak;
+        if (el('xpTotal')) el('xpTotal').textContent = D.xp;
+        if (el('levelCurrent')) el('levelCurrent').textContent = D.level;
+        
         // Quick Stats
-        const courseCount = document.getElementById('courseCount');
-        const certificateCount = document.getElementById('certificateCount');
-        const projectCount = document.getElementById('projectCount');
-
-        if (courseCount) courseCount.textContent = DASHBOARD_DATA.courses;
-        if (certificateCount) certificateCount.textContent = DASHBOARD_DATA.certificates;
-        if (projectCount) projectCount.textContent = DASHBOARD_DATA.projects;
-
-        console.log('✅ [dashboard.js] Dashboard Updated Successfully!');
+        if (el('courseCount')) el('courseCount').textContent = D.courses;
+        if (el('certificateCount')) el('certificateCount').textContent = D.certificates;
+        if (el('projectCount')) el('projectCount').textContent = D.projects;
+        
+        log("📊 Dashboard updated");
     }
 
-    // Run when page is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', updateDashboard);
-    } else {
+    // ==========================================
+    // 19. MAIN INITIALIZER (Issue 3 حل - Combined)
+    // ==========================================
+    function initializeApp() {
+        if (state.isInitialized) {
+            log("⚠️ App already initialized");
+            return;
+        }
+        
+        log("🚀 Initializing Sanaullah ScaleFlow University...");
+        
+        // Init all modules
+        initParticles();
+        initSearch();
+        initGatewayCards();
+        initHeroButtons();
+        initSidebar();
+        initQuickActions();
+        initKeyboardShortcuts();
+        initScrollTop();
+        updateYear();
+        displayConfigStatus();
+        initCounters();
+        
+        // Dashboard update (demo data)
         updateDashboard();
+        
+        // Hide loader
+        hideLoader();
+        
+        // Welcome toast
+        showToast("🎓 Welcome to Sanaullah ScaleFlow University", "success");
+        
+        state.isInitialized = true;
+        log("✅ Application initialized successfully");
     }
 
-})();
-</script>
+    // ==========================================
+    // 20. EXPOSE TO GLOBAL
+    // ==========================================
+    ScaleFlow.initialize = initializeApp;
+    ScaleFlow.showToast = showToast;
+    ScaleFlow.updateDashboard = updateDashboard;
+    ScaleFlow.state = state;
+    ScaleFlow.DOM = DOM;
+    ScaleFlow.DEBUG = DEBUG;
+    
+    global.ScaleFlow = ScaleFlow;
 
+    // ==========================================
+    // 21. AUTO-START ON DOM READY
+    // ==========================================
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initializeApp);
+    } else {
+        initializeApp();
+    }
+
+    log("📄 script.js (Enterprise) loaded");
+
+})(window);
