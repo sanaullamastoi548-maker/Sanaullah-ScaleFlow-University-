@@ -403,4 +403,11 @@ window.addEventListener("load", () => {
    CONSOLE MESSAGE
 ========================================== */
 
+document.getElementById("configTest").innerHTML =
+`
+<h3>${window.__CONFIG.APP_NAME}</h3>
+<p>${window.__CONFIG.APP_VERSION}</p>
+<p>${window.__CONFIG.APP_ENV}</p>
+`;
+
 console.log("🚀 Sanaullah ScaleFlow University Loaded Successfully");
